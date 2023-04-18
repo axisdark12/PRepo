@@ -2,6 +2,21 @@
 
 import BlackButton from "./components/BlackButtton.vue";
 import BlogPost from "./components/BlogPost.vue";
+import {ref} from "vue";
+const post = ref ([
+    {title: 'post 1',id: 1,body: 'Descripcion 1'},
+    {title: 'post 2',id: 2,body: 'Descripcion 2'},
+    {title: 'post 3',id: 3,body: 'Descripcion 3'},
+    {title: 'post 1',id: 1},
+    
+]);
+
+const fav = ref('');
+
+const cambiarFavorito = (title) => {
+    fav.value = title
+  
+}
 
 
 
@@ -9,10 +24,15 @@ import BlogPost from "./components/BlogPost.vue";
 
 <template>
 
-<BlackButton></BlackButton>
-<BlogPost title="Post 2" color-text="secondary"/>
-<BlogPost title="Post 1" color-text="primary"/>
-<BlogPost title="Post 3" color-text="success"/>
+
+<h1>APP</h1>
+<h5>Mi post Favorito es: {{ fav }}</h5>
+
+<BlogPost  v-for="post in post" 
+:key="post.id" 
+:title="post.id" 
+:body="post.body" 
+:cambiarFavorito="cambiarFavorito" />
 </template>
 
 
